@@ -271,16 +271,19 @@
     </div>
 
     <script>
-      const triggers = document.querySelectorAll("a");
-      const highlight = document.createElement("span");
-      highlight.classList.add("highlight");
-      document.body.append(highlight);
-
-      function hightlightLink() {
-        console.log(this);
+      const nav = document.querySelector("#main");
+      const topOfNav = nav.offsetTop;
+      function fixNav() {
+        if (window.scrollY >= topOfNav) {
+          document.body.style.paddingTop = nav.offsetHeight + "px";
+          document.body.classList.add("fixed-nav");
+        } else {
+          document.body.style.paddingTop = 0;
+          document.body.classList.remove("fixed-nav");
+        }
       }
 
-      triggers.forEach((a) => a.addEventListener("mouseenter", hightlightLink));
+      window.addEventListener("scroll", fixNav);
     </script>
   </body>
 </html>
